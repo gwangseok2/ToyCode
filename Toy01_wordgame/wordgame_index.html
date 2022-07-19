@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기 게임</title>
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="human">
+            <span id="order">1</span>번째 참가자
+        </div>
+        <div class="word">
+            제시어:<span id="word"></span>
+        </div>
+        <input type="text" placeholder="제시어를 입력해주세요." class="inputword">
+        <button type="button" onclick="wordInput()">입력</button>
+    </div>
+    <script>
+        const userNumber = parseInt(prompt('몇명이 참가합니까?'));
+        const checkUser = confirm(userNumber + '명이 맞나요?');
+        const userArr = [];
+        
+        // 유저 생성
+        for(i=0; i < userNumber; i++) {
+            userArr.push(i+1);
+        }
+
+        
+        function wordInput() {
+            let word = document.querySelector('.inputword');
+            let order = parseInt(document.querySelector('#order').innerText);
+            checkGame(word, order);
+        }
+
+        function checkGame(word, order) {
+            // 빈값 확인
+            if(word !== '') {
+                // userArr[userArr.length - (userArr.length-1)] = '자바스크립트';
+                
+                // 단어의 결과 값
+                let wordVal = word.value;
+                
+                // 첫 단어
+                resultFirstWord = wordVal.substr(0,1);
+                // 막 단어
+                resultLastWord = wordVal.substr(word.value.length-1,word.value.length);
+                
+                // 맞으면 제시어에 넣어주기.
+                document.querySelector('#word').innerText = wordVal;
+
+                console.log(resultFirstWord,resultLastWord);
+                word.value = null;
+
+                // for(i=0; i < userNumber; i++) {
+                //     userArr[i]
+                // }
+
+
+                if(order !== userNumber) {
+                    order = order +1;
+                    document.querySelector('#order').innerText = order;
+                    console.log(order);
+                } else {
+                    order = 1;
+                    document.querySelector('#order').innerText = order;
+                }
+
+            } else {
+                alert('아무것도 입력하지 않았습니다.');
+                return;
+            }
+        }
+        
+
+    </script>
+    
+</body>
+</html>
