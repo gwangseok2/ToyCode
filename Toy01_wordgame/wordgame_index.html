@@ -15,11 +15,6 @@
         </div>
         <script>
             const userNumber = parseInt(prompt("몇명이 참가합니까?"));
-            alert(userNumber);
-            if (userNumber === "NaN") {
-                alert(userNumber, 11);
-                // location.reload();
-            }
             const checkUser = confirm(userNumber + "명이 맞나요?");
             if (!checkUser) location.reload();
             const userArr = [];

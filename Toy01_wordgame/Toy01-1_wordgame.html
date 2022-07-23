@@ -17,6 +17,36 @@
             const UserLength = parseInt(prompt("참가 인원을 입력해주세요."));
             const yesOrNo = confirm(UserLength + "명이 맞나요?");
             if (!yesOrNo) location.reload();
+
+            const $input = document.querySelector("input[type=text]");
+            const $button = document.querySelector("button");
+            const $word = document.querySelector("#word");
+
+            let wordVal = "";
+            let wordNewVal = "";
+            $input.addEventListener("input", textCheck);
+            $button.addEventListener("click", buttonClick);
+
+            function textCheck(e) {
+                wordNewVal = e.target.value;
+                // console.log(wordVal, "호호");
+            }
+
+            function buttonClick() {
+                if (!wordVal) {
+                    wordVal = wordNewVal;
+                    $word.innerText = wordNewVal;
+                    $input.value = "";
+                } else {
+                    if (wordVal[wordVal.length - 1] === wordNewVal[0]) {
+                        alert("통과");
+                    } else {
+                        alert("앞뒤가 다름");
+                    }
+                    console.log(wordVal[1]);
+                    $input.value = "";
+                }
+            }
         </script>
     </body>
 </html>
