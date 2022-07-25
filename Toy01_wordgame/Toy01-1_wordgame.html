@@ -40,19 +40,19 @@
                     $input.value = "";
                 } else {
                     if (wordVal[wordVal.length - 1] === wordNewVal[0]) {
-                        const orderVal = parseInt($order.innerText);
+                        const $orderVal = parseInt($order.innerText);
                         wordVal = wordNewVal;
 
                         if (UserLength !== $orderVal) {
                             // $orderVal++;
-                            $order.innerText = orderVal + 1;
+                            $order.innerText = $orderVal + 1;
                         } else {
                             $order.innerText = 1;
                         }
 
                         $word.innerText = wordNewVal;
                     } else {
-                        alert("틀렸습니다!");
+                        alert("앞뒤가 다름");
                     }
                     console.log(wordVal[1]);
                     $input.value = "";
