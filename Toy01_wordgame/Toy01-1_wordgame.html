@@ -15,8 +15,12 @@
 
         <script>
             const UserLength = parseInt(prompt("참가 인원을 입력해주세요."));
-            const yesOrNo = confirm(UserLength + "명이 맞나요?");
-            if (!yesOrNo) location.reload();
+            if(!UserLength) {
+                alert('빈 값 입니다.');
+                location.reload();
+            } else {
+                const yesOrNo = confirm(UserLength + "명이 맞나요?");
+            }
 
             const $input = document.querySelector("input[type=text]");
             const $button = document.querySelector("button");
@@ -30,7 +34,6 @@
 
             function textCheck(e) {
                 wordNewVal = e.target.value;
-                // console.log(wordVal, "호호");
             }
 
             function buttonClick() {
