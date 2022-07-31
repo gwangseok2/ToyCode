@@ -39,10 +39,15 @@
             function buttonClick() {
                 if (!wordVal) {
                     wordVal = wordNewVal;
+                    if(wordVal.length !== 3) {
+                        alert('3글자만 입력해주세요.');
+                        wordVal = '';
+                        return false;
+                    }
                     $word.innerText = wordNewVal;
                     $input.value = "";
                 } else {
-                    if (wordVal[wordVal.length - 1] === wordNewVal[0]) {
+                    if (wordVal[wordVal.length - 1] === wordNewVal[0] && wordNewVal.length === 3) {
                         const $orderVal = parseInt($order.innerText);
                         wordVal = wordNewVal;
 
@@ -55,7 +60,7 @@
 
                         $word.innerText = wordNewVal;
                     } else {
-                        alert("앞뒤가 다름");
+                        alert("앞뒤가 다르거나 3글자가 아닙니다.");
                     }
                     console.log(wordVal[1]);
                     $input.value = "";
