@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+    
+        ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            width: 400px;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+        ul li {
+            width: 33.333%;
+            height: 50px;
+            line-height: 49px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        ul li:last-child {
+            width: 66.6%;
+            font-size:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="pannel" style="width:400px; height:50px; border:1px solid #ccc; margin-bottom:10px;"></div>
+    <ul class="calc-box">
+        <li class="calc-item">1</li>
+        <li class="calc-item">2</li>
+        <li class="calc-item">3</li>
+        <li class="calc-item">4</li>
+        <li class="calc-item">5</li>
+        <li class="calc-item">6</li>
+        <li class="calc-item">7</li>
+        <li class="calc-item">8</li>
+        <li class="calc-item">9</li>
+        <li class="calc-item operator plus">+</li>
+        <li class="calc-item operator minus">-</li>
+        <li class="calc-item operator double">*</li>
+        <li class="calc-item operator divide">/</li>
+        <li class="calc-item operator result">=</li>
+    </ul>
+    <h3 id="result-number"></h3>
+    <script>
+        const $pannel = document.querySelector('#pannel');
+        const $calcItem = document.querySelector('.calc-item'); 
+        const $calcItems = document.querySelectorAll('.calc-item'); 
+        let numOne = '';
+        let numTwo = '';
+        let $resultNumber = document.querySelector('#result-number');
+      
+        // 계산 전 결과 값을 담아 놓는 변수
+        let $saveVal = $pannel.innerText;
+
+        // 계산 된 결과 값
+        let resultVal = '결과 값 없음';
+        $resultNumber = $resultNumber.innerText = resultVal;
+
+        for(i=0; i < $calcItems.length; i++) {
+            $calcItems[i].addEventListener('click', function(event) {
+                // 연산자 눌렀을 때
+                if(event.target.classList.contains('operator')) {
+
+                    if(event.target.classList.contains('plus')) {
+                        $pannel.innerHTML = $saveVal + '+';
+                    } else if(event.target.classList.contains('minus')) {
+                        $pannel.innerHTML = $saveVal + '-';
+                    } else if(event.target.classList.contains('divide')) {
+                        $pannel.innerHTML = $saveVal + '/';
+                    } else if(event.target.classList.contains('double')) {
+                        $pannel.innerHTML = $saveVal + '*';
+                    }
+                } else { // 그냥 숫자
+                    numOne = event.target.innerText;
+                    $saveVal = $pannel.innerText + numOne;
+                    $pannel.innerText = $saveVal;
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
