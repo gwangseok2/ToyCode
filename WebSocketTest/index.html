@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Socket Test</title>
+  </head>
+  <body>
+    <h1>웹소켓 테스트</h1>
+
+    <script>
+      // web socket 생성
+      const socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello");
+
+      // web socket의 커넥션이 제대로 생성이 되면.
+      socket.onopen = function (e) {
+        alert("open 커넥션이 만들어 졌습니다.");
+        socket.send("My name is Golang!");
+      };
+
+      // 서버에서 무언가 데이터를 수신을 하면. 이곳으로.
+      socket.onmessage = function (event) {
+        alert(`서버에서 받은 message는 ${event.data} 입니다. 호호호`);
+      };
+
+      // 커넥션 종료.
+      socket.onclose = function (event) {
+        // 제대로 종료가 되는지 체크 event.wasClean
+        if (event.wasClean) {
+          // success
+          alert(`커넥션이 정상적으로 종료되었습니다 code: ${event.code} reason: ${event.reason}`);
+        } else {
+          // error
+          // 예시: 프로세스가 죽거나 네트워크에 장애가 있는 경우
+          alert(`커넥션이 죽었습니다. code: ${event.code} 관리자에게 문의 해주세요.`);
+        }
+      };
+    </script>
+  </body>
+</html>
