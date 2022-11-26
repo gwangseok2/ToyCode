@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>롤 정보</title>
+  </head>
+  <body>
+    <h1>롤 정보 페이지 심심해서 제작중</h1>
+    <section class="champ-list">
+      <artice class="champ">
+        이름:<span class="champName"></span><br />
+        Q스킬:<span class="champQ"></span><br />
+        W스킬:<span class="champW"></span><br />
+        E스킬:<span class="champE"></span><br />
+        R스킬:<span class="champR"></span><br />
+      </artice>
+    </section>
+    <script>
+      // prototype
+      function champ(name, q, w, e, r, passive) {
+        this.name = name;
+        this.q = q;
+        this.w = w;
+        this.e = e;
+        this.r = r;
+        this.passive = passive;
+      }
+      champ.prototype.hidden = "이스터에그";
+      const vayne = new champ("vayne", "구르기(Tumble)", "은화살(Silver Bolts)", "선고(Condemn)", "결전의 시간(Final Hour)", "어둠 사냥꾼(Night Hunter)");
+      champInfo(vayne);
+
+      function champInfo(champ) {
+        const champNodes = document.querySelectorAll(".champ span");
+        let arr = [];
+        for (let key in champ) {
+          arr.push(`${champ[key]}`);
+        }
+        for (let i = 0; i < champNodes.length; i++) {
+          champNodes[i].innerText = arr[i];
+        }
+      }
+    </script>
+  </body>
+</html>
